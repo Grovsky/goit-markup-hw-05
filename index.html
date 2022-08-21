@@ -68,8 +68,19 @@
     <main>
       <section class="hero">
         <div class="container">
-          <h1 class="hero-title">Эффективные решения для вашего бизнеса</h1>
-          <button class="hero-btn" type="button">Заказать услугу</button>
+            <h1 class="hero-title">Эффективные решения для вашего бизнеса</h1>
+            <button class="hero-btn" type="button" data-modal-open>Заказать услугу</button>
+            <div class="backdrop is-hidden" data-modal>
+              <div class="modal">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quam?</p>
+                <button class="modal-btn" data-modal-close>
+                  <svg class="modal-exit-icon" height="18" width="18">
+                    <use href="./images/icons.svg#icon-cross"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section class="peculiarities section">
@@ -113,12 +124,21 @@
           <ul class="process-list list">
             <li class="process-item">
               <img src="./images/process1.jpg" alt="process1" width="370" />
+              <div class="process-text">
+                <p class="process-text-img">Десктопные приложения</p>
+              </div>
             </li>
             <li class="process-item">
               <img src="./images/process2.jpg" alt="process2" width="370" />
+              <div class="process-text">
+                <p class="process-text-img">Мобильные приложения</p>
+              </div>
             </li>
             <li class="process-item">
               <img src="./images/process3.jpg" alt="process3" width="370" />
+              <div class="process-text">
+                <p class="process-text-img">Дизайнерские решения</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -401,5 +421,6 @@
         </div>
       </div>
     </footer>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

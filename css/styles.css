@@ -13,6 +13,8 @@
   --hero-background: #c4c4c4;
   --icon-color: #afb1b8;
   --icon-footer-background: rgba(255, 255, 255, 0.1);
+  --backdrop-color: rgba(0, 0, 0, 0.2);
+  --overlay-background: rgba(33, 150, 243, 0.9);
 }
 
 body {
@@ -108,10 +110,14 @@ button {
   margin-right: 50px;
 }
 .nav-link {
+  position: relative;
+  padding: 32px 2px;
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--title-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-link:hover,
 .nav-link:focus {
@@ -119,6 +125,18 @@ button {
 }
 .current {
   color: var(--accent-color);
+}
+.current::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 28px;
+  background-color: currentColor;
 }
 .header-contacts {
   display: flex;
@@ -135,6 +153,8 @@ button {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--text-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts-link:hover,
 .contacts-link:focus {
@@ -160,6 +180,52 @@ button {
   padding-bottom: 200px;
   padding-top: 200px;
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop-color);
+
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    visability 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 530px;
+  min-height: 580px;
+  padding: 15px;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--special-text-color);
+  border-radius: 4px;
+}
+.modal-btn {
+  position: absolute;
+  display: flex;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--special-text-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
 .hero-title {
   font-weight: 900;
   font-size: 44px;
@@ -183,8 +249,11 @@ button {
   letter-spacing: 0.06em;
   cursor: pointer;
   color: var(--special-text-color);
-  background: var(--accent-color);
+  background-color: var(--accent-color);
   padding: 10px 32px;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-btn:hover,
 .hero-btn:focus {
@@ -204,7 +273,7 @@ button {
   height: 120px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #f5f4fa;
+  background-color: var(--secondary-background);
 }
 .icon-antenna::before {
   background-image: url(../images/antenna.svg);
@@ -220,7 +289,6 @@ button {
 }
 .peculiarities-title {
   font-weight: 700;
-  font-size: 14px;
   line-height: 1.14;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -237,15 +305,33 @@ button {
 .process-list {
   display: flex;
 }
-.process-item:not(:last-child) {
-  margin-right: 30px;
-}
 .process-title {
   font-weight: 700;
   font-size: 36px;
   line-height: 1.16;
   text-align: center;
   margin-bottom: 50px;
+}
+.process-item {
+  position: relative;
+}
+.process-item:not(:last-child) {
+  margin-right: 30px;
+}
+.process-text {
+  position: absolute;
+  bottom: 0;
+  width: 370px;
+  height: 70px;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+.process-text-img {
+  margin-top: 27px;
+  font-weight: 700;
+  line-height: 1.14;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--special-text-color);
 }
 /* ---------------------------------Team----------------------------------- */
 .team {
@@ -302,6 +388,9 @@ button {
   background-color: var(--special-text-color);
   justify-content: center;
   color: var(--icon-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* fill: var(--icon-color); */
 }
 .team-soc-icon {
@@ -339,8 +428,10 @@ button {
   justify-content: center;
   color: var(--icon-color);
   /* fill: var(--icon-color); */
-  border: 1px solid #afb1b8;
+  border: 1px solid var(--icon-color);
   border-radius: 4px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-icon {
   fill: currentColor;
@@ -348,7 +439,7 @@ button {
 .clients-link:hover,
 .clients-link:focus {
   color: var(--accent-color);
-  border: 1px solid #2196f3;
+  border: 1px solid var(--accent-color);
 }
 /* -----------------------------------------Portfolio---------------------------------------- */
 .portfolio-filter {
@@ -373,8 +464,11 @@ button {
   border: none;
   border-radius: 4px;
   color: var(--title-color);
-  background: var(--secondary-background);
+  background-color: var(--secondary-background);
   padding: 6px 22px;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus {
@@ -388,10 +482,38 @@ button {
   border: 1px solid var(--border-color);
   border-top: none;
 }
+.portfolio-box {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin: 0;
+
+  padding: 63px 24px;
+  font-size: 18px;
+  line-height: 1.6;
+
+  color: var(--special-text-color);
+  background-color: var(--overlay-background);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-box:hover .portfolio-overlay {
+  height: 294px;
+  transform: translateY(0);
+}
 .portfolio-link {
   width: 370px;
   display: block;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .portfolio-link:hover,
 .portfolio-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -441,6 +563,8 @@ button {
 .footer-map {
   color: var(--special-text-color);
   line-height: 1.71;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-map:hover,
 .footer-map:focus {
@@ -449,6 +573,8 @@ button {
 .footer-contacts {
   color: var(--contacts-footer-color);
   line-height: 1.71;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-contacts:hover,
 .footer-contacts:focus {
@@ -482,6 +608,9 @@ button {
   background-color: var(--icon-footer-background);
   justify-content: center;
   fill: var(--special-text-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-soc-link:hover,
 .footer-soc-link:focus {
