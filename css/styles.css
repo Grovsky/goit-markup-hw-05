@@ -35,6 +35,7 @@ p {
   margin: 0;
 }
 ul {
+  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -58,12 +59,6 @@ button {
   width: 1200px;
   padding: 0 15px;
   margin: 0 auto;
-  outline: 2px solid red;
-}
-.list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
 }
 .link {
   text-decoration: none;
@@ -86,8 +81,6 @@ button {
 /* -----------------------Header-------------------- */
 .header {
   border-bottom: 1px solid var(--line-color);
-  padding-bottom: 25px;
-  padding-top: 24px;
 }
 .header-container {
   display: flex;
@@ -111,8 +104,9 @@ button {
   margin-right: 50px;
 }
 .nav-link {
+  display: block;
   position: relative;
-  padding: 32px 2px;
+  padding: 32px 0;
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
@@ -166,6 +160,7 @@ button {
 }
 /* ----------------------Hero--------------------- */
 .hero {
+  text-align: center;
   background: var(--hero-background);
   background-image: linear-gradient(
       rgba(47, 48, 58, 0.4),
@@ -173,7 +168,6 @@ button {
     ),
     url(../images/hero-bg.jpg);
   max-width: 1600px;
-  height: 600px;
   margin: 0 auto;
   background-repeat: no-repeat;
   background-size: cover;
@@ -234,7 +228,7 @@ button {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--special-text-color);
-  width: 696px;
+  max-width: 696px;
   margin: 0 auto;
   margin-bottom: 30px;
 }
@@ -244,13 +238,13 @@ button {
   font-size: 16px;
   line-height: 1.87;
   display: flex;
-  align-items: center;
   text-align: center;
   letter-spacing: 0.06em;
   cursor: pointer;
   color: var(--special-text-color);
   background-color: var(--accent-color);
   padding: 10px 32px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -325,8 +319,8 @@ button {
   justify-content: center;
   align-items: center;
   bottom: 0;
-  width: 370px;
-  height: 70px;
+  min-width: 370px;
+  min-height: 70px;
   font-weight: 700;
   line-height: 1.14;
   text-transform: uppercase;
@@ -350,7 +344,7 @@ button {
   margin-bottom: 50px;
 }
 .team-item {
-  width: 270px;
+  flex-basis: calc((100% - 3 * 30px) / 4);
   background-color: var(--special-text-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -484,6 +478,20 @@ button {
   border: 1px solid var(--border-color);
   border-top: none;
 }
+.portfolio-item {
+  flex-basis: calc((100% - 2 * 30px) / 3);
+}
+.portfolio-link {
+  width: 370px;
+  display: block;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-link:hover,
+.portfolio-link:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
 .portfolio-box {
   position: relative;
   overflow: hidden;
@@ -510,18 +518,7 @@ button {
   height: 294px;
   transform: translateY(0);
 }
-.portfolio-link {
-  width: 370px;
-  display: block;
 
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.portfolio-link:hover,
-.portfolio-link:focus {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
 /* .portfolio-item {
   width: 370px;
 }
@@ -595,7 +592,7 @@ button {
   font-weight: 700;
   line-height: 1.14em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--special-text-color);
 }
 .footer-soc-list {
   display: flex;
