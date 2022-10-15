@@ -143,6 +143,7 @@ button {
 .contacts-link {
   display: inline-flex;
   gap: 10px;
+  padding: 32px 0;
   align-items: center;
   font-weight: 500;
   line-height: 1.14;
@@ -426,7 +427,7 @@ button {
   border-radius: 4px;
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-icon {
   fill: currentColor;
@@ -434,7 +435,7 @@ button {
 .clients-link:hover,
 .clients-link:focus {
   color: var(--accent-color);
-  border: 1px solid var(--accent-color);
+  border-color: var(--accent-color);
 }
 /* -----------------------------------------Portfolio---------------------------------------- */
 .portfolio-filter {
